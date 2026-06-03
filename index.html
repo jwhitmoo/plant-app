@@ -15,13 +15,15 @@
 :root{--g:#3B6D11;--gl:#EAF3DE;--bg:#fafaf8;--bd:#e8e8e4;--tx:#1a1a18;--mu:#888;--lt:#ccc;--dn:#dc3545;--wn:#fd7e14;--st:env(safe-area-inset-top,0px);--sb:env(safe-area-inset-bottom,0px)}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--tx);height:100dvh;overflow:hidden}
 #app{position:fixed;inset:0;display:flex;flex-direction:column;padding-top:var(--st)}
-header{display:flex;align-items:center;padding:12px 16px;background:#fff;border-bottom:1px solid var(--bd);min-height:52px;flex-shrink:0;gap:4px}
+header{display:flex;align-items:center;padding:12px 16px;background:#fff;border-bottom:1px solid var(--bd);min-height:52px;flex-shrink:0;gap:6px}
 .logo{font-size:20px;font-weight:600;color:var(--g);letter-spacing:-.5px}
-.back{background:none;border:none;font-size:16px;color:var(--g);padding:4px 6px 4px 0;cursor:pointer;font-weight:500;white-space:nowrap}
+.back{background:none;border:none;font-size:16px;color:var(--g);padding:4px 6px 4px 0;cursor:pointer;font-weight:500;white-space:nowrap;font-family:inherit}
 .htitle{font-size:16px;font-weight:500;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.hbtn{background:none;border:none;color:var(--g);font-size:14px;font-weight:500;cursor:pointer;padding:7px 12px;border-radius:20px;white-space:nowrap}
+.hbtn{background:none;border:none;color:var(--g);font-size:14px;font-weight:500;cursor:pointer;padding:7px 10px;border-radius:20px;white-space:nowrap;font-family:inherit}
 .hbtn:active{background:var(--gl)}
-main{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:calc(60px + var(--sb))}
+.hbtn-icon{background:none;border:none;color:var(--g);font-size:20px;cursor:pointer;padding:4px 6px;border-radius:8px;font-family:inherit}
+.hbtn-icon:active{background:var(--gl)}
+main{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:calc(62px + var(--sb))}
 nav{position:fixed;bottom:0;left:0;right:0;height:calc(56px + var(--sb));padding-bottom:var(--sb);background:#fff;border-top:1px solid var(--bd);display:flex;z-index:100}
 nav button{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;background:none;border:none;cursor:pointer;font-size:11px;color:var(--mu);font-family:inherit;padding:0}
 nav button.on{color:var(--g)}
@@ -29,16 +31,23 @@ nav svg{width:22px;height:22px}
 .legend{display:flex;gap:10px;padding:10px 16px 4px;flex-wrap:wrap}
 .legend-item{display:flex;align-items:center;gap:4px;font-size:11px;color:var(--mu)}
 .plist{padding:8px 16px;display:flex;flex-direction:column;gap:8px}
-.pcard{background:#fff;border:1px solid var(--bd);border-radius:12px;padding:14px 16px;cursor:pointer;display:flex;align-items:center;gap:12px;transition:background .1s}
+.pcard{background:#fff;border:1px solid var(--bd);border-radius:12px;padding:12px 14px;cursor:pointer;display:flex;align-items:center;gap:12px}
 .pcard:active{background:var(--gl)}
+.pthumb{width:58px;height:58px;border-radius:10px;overflow:hidden;flex-shrink:0;background:var(--gl);display:flex;align-items:center;justify-content:center;font-size:26px}
+.pthumb img{width:100%;height:100%;object-fit:cover;display:block}
 .pinfo{flex:1;min-width:0}
 .pname{font-size:15px;font-weight:500;margin-bottom:2px}
 .psp{font-size:12px;color:var(--mu);font-style:italic;margin-bottom:6px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .dots{display:flex;gap:5px}
 .dot{width:7px;height:7px;border-radius:50%}
-.chev{color:var(--lt);font-size:22px;font-weight:300;line-height:1}
+.chev{color:var(--lt);font-size:22px;font-weight:300;flex-shrink:0}
+.hero{width:100%;height:200px;background:var(--gl);position:relative;overflow:hidden;cursor:pointer;flex-shrink:0}
+.hero img{width:100%;height:100%;object-fit:cover;display:block}
+.hero-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:56px}
+.hero-tap{position:absolute;bottom:8px;right:8px;background:rgba(0,0,0,0.45);color:#fff;border-radius:10px;padding:3px 8px;font-size:11px}
+.hero-add{position:absolute;bottom:8px;left:8px;background:rgba(0,0,0,0.45);color:#fff;border-radius:10px;padding:6px 12px;font-size:12px;font-weight:500;border:none;cursor:pointer;font-family:inherit}
 .dsec{margin:12px 16px;background:#fff;border:1px solid var(--bd);border-radius:12px;overflow:hidden}
-.dsec-hd{padding:11px 16px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:var(--mu);border-bottom:1px solid var(--bd);background:var(--bg)}
+.dsec-hd{padding:11px 16px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:var(--mu);border-bottom:1px solid var(--bd);background:var(--bg);display:flex;align-items:center;justify-content:space-between}
 .crow{display:flex;align-items:center;padding:14px 16px;border-bottom:1px solid var(--bd);gap:10px}
 .crow:last-child{border-bottom:none}
 .clbl{font-size:15px;flex:1}
@@ -47,15 +56,38 @@ nav svg{width:22px;height:22px}
 .cst{font-size:13px;font-weight:500}
 .dbtn{padding:8px 14px;border-radius:20px;border:1.5px solid var(--g);background:transparent;color:var(--g);cursor:pointer;font-size:13px;font-weight:500;white-space:nowrap;font-family:inherit}
 .dbtn:active{background:var(--gl)}
+.dbtn-sm{padding:5px 10px;border-radius:20px;border:1px solid var(--g);background:transparent;color:var(--g);cursor:pointer;font-size:12px;font-family:inherit}
 .nitem{padding:12px 16px;border-bottom:1px solid var(--bd);display:flex;gap:10px;align-items:flex-start}
-.nitem:last-of-type{border-bottom:none}
 .ntxt{font-size:14px;line-height:1.5;flex:1;word-break:break-word}
 .ndate{font-size:11px;color:var(--lt);white-space:nowrap;padding-top:2px}
 .nadd{display:flex;gap:8px;padding:12px 16px;border-top:1px solid var(--bd)}
-.nadd input{flex:1;padding:10px 14px;border:1px solid var(--bd);border-radius:22px;font-size:15px;font-family:inherit;background:var(--bg);color:var(--tx);outline:none}
-.nadd input:focus{border-color:var(--g)}
+.nadd input,.cinput input{flex:1;padding:10px 14px;border:1px solid var(--bd);border-radius:22px;font-size:15px;font-family:inherit;background:var(--bg);color:var(--tx);outline:none;-webkit-appearance:none}
+.nadd input:focus,.cinput input:focus{border-color:var(--g)}
 .ltag{display:inline-flex;align-items:center;gap:4px;font-size:12px;color:var(--mu);background:var(--bg);border:1px solid var(--bd);border-radius:20px;padding:4px 12px;margin:12px 16px 4px}
 .delbtn{margin:8px 16px 16px;padding:13px;border-radius:10px;border:1px solid var(--dn);background:transparent;color:var(--dn);font-size:14px;cursor:pointer;width:calc(100% - 32px);font-family:inherit}
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:12px}
+.pphoto{border-radius:10px;overflow:hidden;border:1px solid var(--bd)}
+.pphoto img{width:100%;height:110px;object-fit:cover;display:block;cursor:pointer}
+.pphoto-info{padding:7px 8px}
+.pphoto-date{font-size:10px;color:var(--lt);margin-bottom:3px}
+.pphoto-analysis{font-size:11px;line-height:1.4;color:#555}
+.pphoto-analyzing{font-size:11px;color:var(--mu);font-style:italic}
+.photo-add-btn{display:flex;align-items:center;justify-content:center;gap:6px;margin:0 12px 12px;padding:11px;border-radius:10px;border:1px dashed var(--bd);background:transparent;color:var(--mu);font-size:14px;cursor:pointer;font-family:inherit;width:calc(100% - 24px)}
+.photo-add-btn:active{background:var(--gl)}
+.pchat-msgs{display:flex;flex-direction:column;gap:8px;padding:12px;max-height:280px;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.mb{max-width:82%;padding:9px 12px;border-radius:14px;font-size:14px;line-height:1.6;white-space:pre-wrap;word-break:break-word}
+.mu-msg{align-self:flex-end;background:var(--g);color:#fff;border-bottom-right-radius:4px}
+.ma-msg{align-self:flex-start;background:var(--bg);border:1px solid var(--bd);border-bottom-left-radius:4px}
+.cinput{display:flex;gap:8px;padding:12px;border-top:1px solid var(--bd)}
+.csend,.nadd-btn{padding:10px 16px;border-radius:22px;border:none;background:var(--g);color:#fff;font-size:14px;font-weight:500;cursor:pointer;font-family:inherit;white-space:nowrap}
+.csend:active,.nadd-btn:active{opacity:.8}
+.csend:disabled{opacity:.5}
+.gchat-msgs{padding:12px 16px 100px;display:flex;flex-direction:column;gap:10px}
+.gchat-input{position:fixed;bottom:calc(56px + var(--sb));left:0;right:0;padding:10px 16px;background:#fff;border-top:1px solid var(--bd);display:flex;gap:8px;z-index:99}
+.gchat-input input{flex:1;padding:11px 16px;border:1px solid var(--bd);border-radius:24px;font-size:16px;font-family:inherit;background:var(--bg);color:var(--tx);outline:none;-webkit-appearance:none}
+.gchat-input input:focus{border-color:var(--g)}
+.gchat-send{padding:11px 20px;border-radius:24px;border:none;background:var(--g);color:#fff;font-size:15px;font-weight:500;cursor:pointer;font-family:inherit}
+.gchat-send:disabled{opacity:.5}
 .fwrap{padding:16px;display:flex;flex-direction:column;gap:14px}
 .ffield label{display:block;font-size:12px;color:var(--mu);margin-bottom:4px;font-weight:500}
 .ffield input{width:100%;padding:11px 14px;border:1px solid var(--bd);border-radius:10px;font-size:16px;font-family:inherit;background:#fff;color:var(--tx);outline:none;-webkit-appearance:none}
@@ -63,52 +95,240 @@ nav svg{width:22px;height:22px}
 .fgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
 .fbtns{display:flex;gap:10px}
 .bp{flex:1;padding:14px;border-radius:12px;border:none;background:var(--g);color:#fff;font-size:16px;font-weight:500;cursor:pointer;font-family:inherit}
-.bp:active{opacity:.8}
 .bs{flex:1;padding:14px;border-radius:12px;border:1px solid var(--bd);background:#fff;color:var(--tx);font-size:16px;cursor:pointer;font-family:inherit}
-.cmsgs{padding:12px 16px 90px;display:flex;flex-direction:column;gap:10px}
-.mb{max-width:82%;padding:10px 14px;border-radius:16px;font-size:15px;line-height:1.6;white-space:pre-wrap;word-break:break-word}
-.mu{align-self:flex-end;background:var(--g);color:#fff;border-bottom-right-radius:4px}
-.ma{align-self:flex-start;background:#fff;border:1px solid var(--bd);border-bottom-left-radius:4px}
-.cinput{position:fixed;bottom:calc(56px + var(--sb));left:0;right:0;padding:10px 16px;background:#fff;border-top:1px solid var(--bd);display:flex;gap:8px;z-index:99}
-.cinput input{flex:1;padding:11px 16px;border:1px solid var(--bd);border-radius:24px;font-size:16px;font-family:inherit;background:var(--bg);color:var(--tx);outline:none;-webkit-appearance:none}
-.cinput input:focus{border-color:var(--g)}
-.csend{padding:11px 20px;border-radius:24px;border:none;background:var(--g);color:#fff;font-size:15px;font-weight:500;cursor:pointer;font-family:inherit}
-.csend:active{opacity:.8}
-.csend:disabled{opacity:.5}
-.empty{display:flex;align-items:center;justify-content:center;height:200px;color:var(--lt);font-size:14px}
+.id-photo{width:100%;max-height:260px;object-fit:cover;border-radius:12px;margin-bottom:4px}
+.id-result{margin:0 16px 12px;background:#fff;border:1px solid var(--bd);border-radius:12px;padding:14px;font-size:14px;line-height:1.7;white-space:pre-wrap}
+.id-add-btn{margin:0 16px 16px;padding:14px;border-radius:12px;border:none;background:var(--g);color:#fff;font-size:15px;font-weight:500;cursor:pointer;font-family:inherit;width:calc(100% - 32px)}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:300;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.overlay img{max-width:100%;max-height:85vh;object-fit:contain;border-radius:4px}
+.overlay-close{color:#fff;font-size:13px;margin-top:16px;opacity:.7}
+.analyzing-badge{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--mu);padding:6px 12px}
+.spinner{width:14px;height:14px;border:2px solid var(--bd);border-top-color:var(--g);border-radius:50%;animation:spin .7s linear infinite;flex-shrink:0}
+@keyframes spin{to{transform:rotate(360deg)}}
 </style>
 </head>
 <body>
 <div id="app"></div>
+<input type="file" accept="image/*" id="hero-input" style="display:none">
+<input type="file" accept="image/*" id="photo-input" style="display:none">
+<input type="file" accept="image/*" id="identify-input" style="display:none">
 <script>
-const G='#3B6D11',NOW=new Date().toISOString();
+const NOW=new Date().toISOString();
 const INIT=[
-  {id:'1',name:'Monkey Mask Monstera',species:'Monstera adansonii',location:'East bedroom window',waterFreqDays:7,fertiliseFreqDays:30,repotFreqDays:548,lastWatered:NOW,lastFertilised:null,lastRepotted:null,notes:[]},
-  {id:'2',name:'Pothos',species:'Epipremnum aureum',location:'North window, hanging',waterFreqDays:10,fertiliseFreqDays:30,repotFreqDays:365,lastWatered:null,lastFertilised:null,lastRepotted:null,notes:[]},
-  {id:'3',name:'Oxalis (1)',species:'Oxalis triangularis',location:'North window',waterFreqDays:7,fertiliseFreqDays:30,repotFreqDays:365,lastWatered:null,lastFertilised:null,lastRepotted:null,notes:[]},
-  {id:'4',name:'Oxalis (2)',species:'Oxalis triangularis',location:'North window',waterFreqDays:7,fertiliseFreqDays:30,repotFreqDays:365,lastWatered:null,lastFertilised:null,lastRepotted:null,notes:[]},
-  {id:'5',name:'Asparagus Fern',species:'Asparagus setaceus',location:'Shelf behind sofa',waterFreqDays:7,fertiliseFreqDays:30,repotFreqDays:365,lastWatered:null,lastFertilised:null,lastRepotted:null,notes:[]},
-  {id:'6',name:'Palm',species:'Unknown palm',location:'East window',waterFreqDays:10,fertiliseFreqDays:30,repotFreqDays:365,lastWatered:NOW,lastFertilised:null,lastRepotted:NOW,notes:[]},
-  {id:'7',name:'Pink Princess Philodendron',species:'Philodendron erubescens',location:'East window',waterFreqDays:7,fertiliseFreqDays:30,repotFreqDays:365,lastWatered:null,lastFertilised:null,lastRepotted:null,notes:[]},
-  {id:'8',name:'Coffee Plant',species:'Coffea arabica',location:'Shelf, grow light',waterFreqDays:7,fertiliseFreqDays:14,repotFreqDays:365,lastWatered:null,lastFertilised:null,lastRepotted:null,notes:[]},
-  {id:'9',name:'String of Turtles',species:'Peperomia prostrata',location:'Drawer unit',waterFreqDays:14,fertiliseFreqDays:30,repotFreqDays:548,lastWatered:null,lastFertilised:null,lastRepotted:null,notes:[]},
-  {id:'10',name:'Peperomia',species:'Peperomia obtusifolia var.',location:'Shelf',waterFreqDays:14,fertiliseFreqDays:30,repotFreqDays:548,lastWatered:null,lastFertilised:null,lastRepotted:null,notes:[]},
-  {id:'11',name:'Schefflera',species:'Schefflera arboricola',location:'North window',waterFreqDays:10,fertiliseFreqDays:14,repotFreqDays:365,lastWatered:null,lastFertilised:null,lastRepotted:NOW,notes:[]},
-  {id:'12',name:'Basil',species:'Ocimum basilicum',location:'East kitchen window',waterFreqDays:3,fertiliseFreqDays:14,repotFreqDays:180,lastWatered:null,lastFertilised:null,lastRepotted:null,notes:[]},
-  {id:'13',name:'Cactus',species:'Unknown',location:'Shelf, grow light',waterFreqDays:14,fertiliseFreqDays:60,repotFreqDays:730,lastWatered:null,lastFertilised:null,lastRepotted:null,notes:[]},
-  {id:'14',name:'Tradescantia',species:'Tradescantia zebrina',location:'North window',waterFreqDays:7,fertiliseFreqDays:30,repotFreqDays:365,lastWatered:null,lastFertilised:null,lastRepotted:null,notes:[]},
+  {id:'1',name:'Monkey Mask Monstera',species:'Monstera adansonii',location:'East bedroom window',waterFreqDays:7,fertiliseFreqDays:30,repotFreqDays:548,lastWatered:NOW,lastFertilised:null,lastRepotted:null,notes:[],photos:[],chatHistory:[]},
+  {id:'2',name:'Pothos',species:'Epipremnum aureum',location:'North window, hanging',waterFreqDays:10,fertiliseFreqDays:30,repotFreqDays:365,lastWatered:null,lastFertilised:null,lastRepotted:null,notes:[],photos:[],chatHistory:[]},
+  {id:'3',name:'Oxalis (1)',species:'Oxalis triangularis',location:'North window',waterFreqDays:7,fertiliseFreqDays:30,repotFreqDays:365,lastWatered:null,lastFertilised:null,lastRepotted:null,notes:[],photos:[],chatHistory:[]},
+  {id:'4',name:'Oxalis (2)',species:'Oxalis triangularis',location:'North window',waterFreqDays:7,fertiliseFreqDays:30,repotFreqDays:365,lastWatered:null,lastFertilised:null,lastRepotted:null,notes:[],photos:[],chatHistory:[]},
+  {id:'5',name:'Asparagus Fern',species:'Asparagus setaceus',location:'Shelf behind sofa',waterFreqDays:7,fertiliseFreqDays:30,repotFreqDays:365,lastWatered:null,lastFertilised:null,lastRepotted:null,notes:[],photos:[],chatHistory:[]},
+  {id:'6',name:'Palm',species:'Unknown palm',location:'East window',waterFreqDays:10,fertiliseFreqDays:30,repotFreqDays:365,lastWatered:NOW,lastFertilised:null,lastRepotted:NOW,notes:[],photos:[],chatHistory:[]},
+  {id:'7',name:'Pink Princess Philodendron',species:'Philodendron erubescens',location:'East window',waterFreqDays:7,fertiliseFreqDays:30,repotFreqDays:365,lastWatered:null,lastFertilised:null,lastRepotted:null,notes:[],photos:[],chatHistory:[]},
+  {id:'8',name:'Coffee Plant',species:'Coffea arabica',location:'Shelf, grow light',waterFreqDays:7,fertiliseFreqDays:14,repotFreqDays:365,lastWatered:null,lastFertilised:null,lastRepotted:null,notes:[],photos:[],chatHistory:[]},
+  {id:'9',name:'String of Turtles',species:'Peperomia prostrata',location:'Drawer unit',waterFreqDays:14,fertiliseFreqDays:30,repotFreqDays:548,lastWatered:null,lastFertilised:null,lastRepotted:null,notes:[],photos:[],chatHistory:[]},
+  {id:'10',name:'Peperomia',species:'Peperomia obtusifolia var.',location:'Shelf',waterFreqDays:14,fertiliseFreqDays:30,repotFreqDays:548,lastWatered:null,lastFertilised:null,lastRepotted:null,notes:[],photos:[],chatHistory:[]},
+  {id:'11',name:'Schefflera',species:'Schefflera arboricola',location:'North window',waterFreqDays:10,fertiliseFreqDays:14,repotFreqDays:365,lastWatered:null,lastFertilised:null,lastRepotted:NOW,notes:[],photos:[],chatHistory:[]},
+  {id:'12',name:'Basil',species:'Ocimum basilicum',location:'East kitchen window',waterFreqDays:3,fertiliseFreqDays:14,repotFreqDays:180,lastWatered:null,lastFertilised:null,lastRepotted:null,notes:[],photos:[],chatHistory:[]},
+  {id:'13',name:'Cactus',species:'Unknown',location:'Shelf, grow light',waterFreqDays:14,fertiliseFreqDays:60,repotFreqDays:730,lastWatered:null,lastFertilised:null,lastRepotted:null,notes:[],photos:[],chatHistory:[]},
+  {id:'14',name:'Tradescantia',species:'Tradescantia zebrina',location:'North window',waterFreqDays:7,fertiliseFreqDays:30,repotFreqDays:365,lastWatered:null,lastFertilised:null,lastRepotted:null,notes:[],photos:[],chatHistory:[]},
 ];
 
-let plants=(() => { try{const s=localStorage.getItem('fp');return s?JSON.parse(s):INIT}catch{return INIT} })();
-let messages=(() => { try{const s=localStorage.getItem('fm');return s?JSON.parse(s):[{role:'assistant',content:'Hi! I know your whole plant collection. Ask me anything about care, watering schedules, troubleshooting, or anything plant-related.'}]}catch{return [{role:'assistant',content:'Hi! Ask me about your plants.'}]} })();
-let view='list',tab='plants',selId=null,chatIn='',loadingChat=false,noteIn='',formData={name:'',species:'',location:'',waterFreqDays:7,fertiliseFreqDays:30,repotFreqDays:365};
+let plants=load('fp',INIT);
+let gMessages=load('fm',[{role:'assistant',content:'Hi! I know your whole plant collection. Ask me anything about care, watering schedules, or troubleshooting.'}]);
+let view='list',tab='plants',selId=null;
+let gChatIn='',gChatLoading=false;
+let noteIn='',plantChatIn='',plantChatLoading=false;
+let formData={name:'',species:'',location:'',waterFreqDays:7,fertiliseFreqDays:30,repotFreqDays:365};
+let photoViewSrc=null;
+let identifyData=null; // {dataUrl, analyzing, result}
+let pendingPhotoPlantId=null;
 
-function save(){try{localStorage.setItem('fp',JSON.stringify(plants))}catch{}try{localStorage.setItem('fm',JSON.stringify(messages))}catch{}}
+function load(key,def){try{const s=localStorage.getItem(key);return s?JSON.parse(s):def}catch{return def}}
+function save(){
+  // Save plants without photos to keep main storage small
+  const slim=plants.map(p=>({...p,photos:(p.photos||[]).map(ph=>({...ph,dataUrl:undefined,_hasData:!!ph.dataUrl}))}));
+  try{localStorage.setItem('fp',JSON.stringify(slim))}catch{}
+  // Save photos separately per plant
+  plants.forEach(p=>{
+    if(p.photos&&p.photos.length){
+      try{localStorage.setItem('fp-ph-'+p.id,JSON.stringify(p.photos))}catch{}
+    }
+  });
+  try{localStorage.setItem('fm',JSON.stringify(gMessages))}catch{}
+  // Save chat histories
+  plants.forEach(p=>{
+    if(p.chatHistory&&p.chatHistory.length){
+      try{localStorage.setItem('fp-ch-'+p.id,JSON.stringify(p.chatHistory))}catch{}
+    }
+  });
+}
+function loadAll(){
+  const base=load('fp',INIT);
+  return base.map(p=>{
+    const photos=load('fp-ph-'+p.id,[]);
+    const chatHistory=load('fp-ch-'+p.id,[]);
+    return {...p,photos,chatHistory};
+  });
+}
+
 function fmt(iso){if(!iso)return'—';const d=Math.floor((Date.now()-new Date(iso))/86400000);if(d===0)return'today';if(d===1)return'yesterday';if(d<7)return d+'d ago';return new Date(iso).toLocaleDateString('en-GB',{day:'numeric',month:'short'})}
 function due(last,freq){if(!last)return null;return Math.round(freq-(Date.now()-new Date(last))/86400000)}
 function sclr(d){if(d===null)return'#bbb';if(d<=0)return'#dc3545';if(d<=2)return'#fd7e14';return'#3B6D11'}
 function flbl(d){return d<30?d+'d':Math.round(d/30)+'mo'}
 function esc(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+
+function resizeImage(file){
+  return new Promise(resolve=>{
+    const img=new Image(),url=URL.createObjectURL(file);
+    img.onload=()=>{
+      const MAX=600,ratio=Math.min(MAX/img.width,MAX/img.height,1);
+      const w=Math.round(img.width*ratio),h=Math.round(img.height*ratio);
+      const c=document.createElement('canvas');c.width=w;c.height=h;
+      c.getContext('2d').drawImage(img,0,0,w,h);
+      URL.revokeObjectURL(url);resolve(c.toDataURL('image/jpeg',.65));
+    };
+    img.onerror=()=>{URL.revokeObjectURL(url);resolve(null)};
+    img.src=url;
+  });
+}
+
+async function apiCall(messages,system,maxTokens=800){
+  const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:maxTokens,system,messages})});
+  const d=await r.json();
+  return d.content?d.content.filter(b=>b.type==='text').map(b=>b.text).join(''):'No response.';
+}
+
+function plantCtx(p){
+  const recentAnalyses=(p.photos||[]).filter(ph=>ph.analysis).slice(-2).map(ph=>ph.analysis).join('; ');
+  return`Plant: ${p.name} (${p.species})\nLocation: ${p.location}\nWater every ${p.waterFreqDays}d (last: ${fmt(p.lastWatered)})\nFertilise every ${p.fertiliseFreqDays}d (last: ${fmt(p.lastFertilised)})\nRepot every ${flbl(p.repotFreqDays)} (last: ${fmt(p.lastRepotted)})\nNotes: ${(p.notes||[]).slice(-3).map(n=>n.text).join('; ')||'none'}\nRecent photo analyses: ${recentAnalyses||'none'}`;
+}
+
+// Photo handlers
+document.getElementById('hero-input').addEventListener('change',async function(){
+  if(!this.files[0]||!pendingPhotoPlantId)return;
+  const dataUrl=await resizeImage(this.files[0]);
+  if(!dataUrl)return;
+  const photoId=''+Date.now();
+  const photo={id:photoId,date:new Date().toISOString(),dataUrl,analysis:null,analyzing:true};
+  plants=plants.map(p=>p.id===pendingPhotoPlantId?{...p,photos:[...(p.photos||[]),photo]}:p);
+  save();render();
+  await analyzePhotoFn(pendingPhotoPlantId,photoId);
+  this.value='';
+});
+
+document.getElementById('photo-input').addEventListener('change',async function(){
+  if(!this.files[0]||!pendingPhotoPlantId)return;
+  const dataUrl=await resizeImage(this.files[0]);
+  if(!dataUrl)return;
+  const photoId=''+Date.now();
+  const photo={id:photoId,date:new Date().toISOString(),dataUrl,analysis:null,analyzing:true};
+  plants=plants.map(p=>p.id===pendingPhotoPlantId?{...p,photos:[...(p.photos||[]),photo]}:p);
+  save();render();
+  await analyzePhotoFn(pendingPhotoPlantId,photoId);
+  this.value='';
+});
+
+document.getElementById('identify-input').addEventListener('change',async function(){
+  if(!this.files[0])return;
+  const dataUrl=await resizeImage(this.files[0]);
+  if(!dataUrl)return;
+  identifyData={dataUrl,analyzing:true,result:null};
+  view='identify';render();
+  try{
+    const base64=dataUrl.split(',')[1],mt=dataUrl.split(';')[0].split(':')[1];
+    const result=await apiCall([{role:'user',content:[
+      {type:'image',source:{type:'base64',media_type:mt,data:base64}},
+      {type:'text',text:'Identify this plant. Give: 1) Common name, 2) Scientific name, 3) Brief care needs (light, water, humidity), 4) Any visible health issues in this photo. Keep it concise and practical.'}
+    ]}],'You are a plant identification expert. Be concise and practical.',600);
+    identifyData={...identifyData,analyzing:false,result};
+  }catch(e){identifyData={...identifyData,analyzing:false,result:'Identification failed. Please try again.'};}
+  render();this.value='';
+});
+
+async function analyzePhotoFn(plantId,photoId){
+  const plant=plants.find(p=>p.id===plantId);
+  const photo=(plant.photos||[]).find(ph=>ph.id===photoId);
+  if(!photo)return;
+  try{
+    const base64=photo.dataUrl.split(',')[1],mt=photo.dataUrl.split(';')[0].split(':')[1];
+    const analysis=await apiCall([{role:'user',content:[
+      {type:'image',source:{type:'base64',media_type:mt,data:base64}},
+      {type:'text',text:`This is my ${plant.name} (${plant.species}). Analyze for health issues, pests, stress signs, or anything notable. 2-3 sentences max. If healthy, say so briefly.`}
+    ]}],'You are a plant health expert. Be concise.',400);
+    plants=plants.map(p=>p.id===plantId?{...p,photos:(p.photos||[]).map(ph=>ph.id===photoId?{...ph,analysis,analyzing:false}:ph)}:p);
+  }catch(e){
+    plants=plants.map(p=>p.id===plantId?{...p,photos:(p.photos||[]).map(ph=>ph.id===photoId?{...ph,analysis:'Analysis failed.',analyzing:false}:ph)}:p);
+  }
+  save();render();
+}
+
+function triggerHeroPhoto(plantId){pendingPhotoPlantId=plantId;document.getElementById('hero-input').click()}
+function triggerAddPhoto(plantId){pendingPhotoPlantId=plantId;document.getElementById('photo-input').click()}
+function triggerIdentify(){document.getElementById('identify-input').click()}
+function viewPhoto(src){photoViewSrc=src;render()}
+function closePhoto(){photoViewSrc=null;render()}
+
+function switchTab(t){tab=t;if(t==='plants')view='list';render()}
+function selPlant(id){selId=id;view='detail';noteIn='';plantChatIn='';render();
+  setTimeout(()=>{const el=document.getElementById('plant-chat-msgs');if(el)el.scrollTop=el.scrollHeight},100)}
+function goBack(){view='list';selId=null;identifyData=null;render()}
+function markDone(id,key){plants=plants.map(p=>p.id===id?{...p,[key]:new Date().toISOString()}:p);save();render()}
+
+function addNote(id){
+  const el=document.getElementById('ni');const txt=(el?el.value:noteIn).trim();if(!txt)return;
+  plants=plants.map(p=>p.id===id?{...p,notes:[...(p.notes||[]),{id:''+Date.now(),text:txt,date:new Date().toISOString()}]}:p);
+  noteIn='';save();render();
+}
+function delPlant(id){
+  if(!confirm('Delete this plant?'))return;
+  plants=plants.filter(p=>p.id!==id);selId=null;view='list';save();render();
+}
+function addPlant(){
+  if(!formData.name.trim()){alert('Please enter a plant name');return}
+  plants=[...plants,{...formData,id:''+Date.now(),notes:[],photos:[],chatHistory:[],lastWatered:null,lastFertilised:null,lastRepotted:null}];
+  view='list';save();render();
+}
+function deletePhoto(plantId,photoId){
+  plants=plants.map(p=>p.id===plantId?{...p,photos:(p.photos||[]).filter(ph=>ph.id!==photoId)}:p);
+  save();render();
+}
+
+async function sendPlantChat(plantId){
+  const el=document.getElementById('pci');const txt=(el?el.value:plantChatIn).trim();
+  if(!txt||plantChatLoading)return;
+  const plant=plants.find(p=>p.id===plantId);if(!plant)return;
+  const hist=plant.chatHistory||[];
+  const next=[...hist,{role:'user',content:txt}];
+  plants=plants.map(p=>p.id===plantId?{...p,chatHistory:next,chatLoading:true}:p);
+  plantChatIn='';save();render();
+  setTimeout(()=>{const el=document.getElementById('plant-chat-msgs');if(el)el.scrollTop=el.scrollHeight},50);
+  try{
+    const fu=next.findIndex(m=>m.role==='user');
+    const api=fu>=0?next.slice(fu):next;
+    const reply=await apiCall(api.map(m=>({role:m.role,content:m.content})),`You are a plant care expert helping with a specific plant:\n${plantCtx(plant)}\n\nGive specific practical advice about this plant. Be concise and warm.`);
+    plants=plants.map(p=>p.id===plantId?{...p,chatHistory:[...next,{role:'assistant',content:reply}],chatLoading:false}:p);
+  }catch(e){
+    plants=plants.map(p=>p.id===plantId?{...p,chatHistory:[...next,{role:'assistant',content:'Something went wrong, try again.'}],chatLoading:false}:p);
+  }
+  plantChatLoading=false;save();render();
+  setTimeout(()=>{const el=document.getElementById('plant-chat-msgs');if(el)el.scrollTop=el.scrollHeight},50);
+}
+
+async function sendGlobalChat(){
+  const el=document.getElementById('gci');const txt=(el?el.value:gChatIn).trim();
+  if(!txt||gChatLoading)return;
+  gMessages=[...gMessages,{role:'user',content:txt}];
+  gChatIn='';gChatLoading=true;render();
+  setTimeout(()=>{const el=document.getElementById('gchat-msgs');if(el)el.scrollTop=el.scrollHeight},50);
+  const ctx=plants.map(p=>`${p.name} (${p.species}), ${p.location}. Water every ${p.waterFreqDays}d (last: ${fmt(p.lastWatered)}), fertilise every ${p.fertiliseFreqDays}d (last: ${fmt(p.lastFertilised)}).`).join('\n');
+  const fu=gMessages.findIndex(m=>m.role==='user');
+  const api=fu>=0?gMessages.slice(fu):gMessages;
+  try{
+    const reply=await apiCall(api.map(m=>({role:m.role,content:m.content})),`You are a plant care assistant. User's plants:\n${ctx}\nBe concise, warm, specific.`);
+    gMessages=[...gMessages,{role:'assistant',content:reply}];
+  }catch(e){gMessages=[...gMessages,{role:'assistant',content:'Something went wrong, try again.'}]}
+  gChatLoading=false;save();render();
+  setTimeout(()=>{const el=document.getElementById('gchat-msgs');if(el)el.scrollTop=el.scrollHeight},50);
+}
 
 function render(){
   const sel=plants.find(p=>p.id===selId);
@@ -116,59 +336,105 @@ function render(){
 
   if(tab==='plants'){
     if(view==='list'){
-      hdr=`<span class="logo">foliage</span><div style="flex:1"></div><button class="hbtn" onclick="showAdd()">+ add</button>`;
+      hdr=`<span class="logo">foliage</span><div style="flex:1"></div>
+        <button class="hbtn-icon" onclick="triggerIdentify()" title="Identify a plant">🔍</button>
+        <button class="hbtn" onclick="showAdd()">+ add</button>`;
       body=`<div class="legend">
         ${[['#3B6D11','ok'],['#fd7e14','soon'],['#dc3545','overdue'],['#bbb','not set']].map(([c,l])=>`<div class="legend-item"><div class="dot" style="background:${c}"></div>${l}</div>`).join('')}
       </div>
       <div class="plist">
         ${plants.map(p=>{
           const w=due(p.lastWatered,p.waterFreqDays),f=due(p.lastFertilised,p.fertiliseFreqDays),r=due(p.lastRepotted,p.repotFreqDays);
+          const recent=(p.photos||[]).slice(-1)[0];
           return`<div class="pcard" onclick="selPlant('${p.id}')">
+            <div class="pthumb">${recent&&recent.dataUrl?`<img src="${recent.dataUrl}" alt="">`:'🌿'}</div>
             <div class="pinfo">
               <div class="pname">${esc(p.name)}</div>
               <div class="psp">${esc(p.species)}</div>
               <div class="dots">
-                <div class="dot" style="background:${sclr(w)}" title="water"></div>
-                <div class="dot" style="background:${sclr(f)}" title="fertilise"></div>
-                <div class="dot" style="background:${sclr(r)}" title="repot"></div>
+                <div class="dot" style="background:${sclr(w)}"></div>
+                <div class="dot" style="background:${sclr(f)}"></div>
+                <div class="dot" style="background:${sclr(r)}"></div>
               </div>
             </div>
             <span class="chev">›</span>
           </div>`;
         }).join('')}
       </div>`;
+
     } else if(view==='detail'&&sel){
+      const recent=(sel.photos||[]).slice(-1)[0];
       const rows=[
         {dk:'lastWatered',last:sel.lastWatered,freq:sel.waterFreqDays,lbl:'💧 Water'},
         {dk:'lastFertilised',last:sel.lastFertilised,freq:sel.fertiliseFreqDays,lbl:'🌱 Fertilise'},
         {dk:'lastRepotted',last:sel.lastRepotted,freq:sel.repotFreqDays,lbl:'📦 Repot'},
       ];
+      const hist=sel.chatHistory||[];
       hdr=`<button class="back" onclick="goBack()">‹ Plants</button><span class="htitle">${esc(sel.name)}</span>`;
-      body=`<div class="ltag">📍 ${esc(sel.location||'no location')}</div>
-      <div class="dsec">
-        <div class="dsec-hd">Care schedule</div>
-        ${rows.map(({dk,last,freq,lbl})=>{
-          const d=due(last,freq);
-          return`<div class="crow">
-            <span class="clbl">${lbl}</span>
-            <div class="cinfo">
-              <span class="cfreq">every ${flbl(freq)}</span>
-              <span class="cst" style="color:${sclr(d)}">${last?fmt(last):'never done'}</span>
-            </div>
-            <button class="dbtn" onclick="markDone('${sel.id}','${dk}')">done</button>
-          </div>`;
-        }).join('')}
-      </div>
-      <div class="dsec">
-        <div class="dsec-hd">Notes</div>
-        ${(sel.notes||[]).length===0?'<div style="padding:14px 16px;font-size:14px;color:#bbb;font-style:italic">no notes yet</div>':''}
-        ${(sel.notes||[]).map(n=>`<div class="nitem"><span class="ntxt">${esc(n.text)}</span><span class="ndate">${fmt(n.date)}</span></div>`).join('')}
-        <div class="nadd">
-          <input id="ni" type="text" placeholder="add a note..." value="${esc(noteIn)}" oninput="noteIn=this.value" onkeydown="if(event.key==='Enter')addNote('${sel.id}')">
-          <button class="dbtn" onclick="addNote('${sel.id}')">add</button>
+      body=`
+        <div class="hero" onclick="viewPhoto('${recent&&recent.dataUrl?recent.dataUrl:''}')">
+          ${recent&&recent.dataUrl?`<img src="${recent.dataUrl}" alt=""><div class="hero-tap">tap to expand</div>`:`<div class="hero-placeholder">🌿</div>`}
+          <button class="hero-add" onclick="event.stopPropagation();triggerHeroPhoto('${sel.id}')">📷 ${recent?'Update photo':'Add photo'}</button>
         </div>
-      </div>
-      <button class="delbtn" onclick="delPlant('${sel.id}')">Delete plant</button>`;
+        <div class="ltag">📍 ${esc(sel.location||'no location')}</div>
+
+        <div class="dsec">
+          <div class="dsec-hd">Care schedule</div>
+          ${rows.map(({dk,last,freq,lbl})=>{
+            const d=due(last,freq);
+            return`<div class="crow">
+              <span class="clbl">${lbl}</span>
+              <div class="cinfo"><span class="cfreq">every ${flbl(freq)}</span><span class="cst" style="color:${sclr(d)}">${last?fmt(last):'never done'}</span></div>
+              <button class="dbtn" onclick="markDone('${sel.id}','${dk}')">done</button>
+            </div>`;
+          }).join('')}
+        </div>
+
+        <div class="dsec">
+          <div class="dsec-hd">Notes</div>
+          ${(sel.notes||[]).length===0?'<div style="padding:14px 16px;font-size:14px;color:#bbb;font-style:italic">no notes yet</div>':''}
+          ${(sel.notes||[]).map(n=>`<div class="nitem"><span class="ntxt">${esc(n.text)}</span><span class="ndate">${fmt(n.date)}</span></div>`).join('')}
+          <div class="nadd">
+            <input id="ni" type="text" placeholder="add a note..." value="${esc(noteIn)}" oninput="noteIn=this.value" onkeydown="if(event.key==='Enter')addNote('${sel.id}')">
+            <button class="nadd-btn" onclick="addNote('${sel.id}')">add</button>
+          </div>
+        </div>
+
+        <div class="dsec">
+          <div class="dsec-hd">
+            <span>Photo health log</span>
+            <button class="dbtn-sm" onclick="triggerAddPhoto('${sel.id}')">📷 add</button>
+          </div>
+          ${(sel.photos||[]).length===0?'<div style="padding:14px 16px;font-size:14px;color:#bbb;font-style:italic">no photos yet — add one to track health over time</div>':''}
+          <div class="pgrid">
+            ${[...(sel.photos||[])].reverse().map(ph=>`
+              <div class="pphoto">
+                <img src="${ph.dataUrl||''}" alt="" onclick="viewPhoto('${ph.dataUrl||''}')">
+                <div class="pphoto-info">
+                  <div class="pphoto-date">${fmt(ph.date)}</div>
+                  ${ph.analyzing?`<div class="pphoto-analyzing"><span class="spinner" style="display:inline-block;vertical-align:middle;margin-right:4px"></span>analysing...</div>`:
+                    ph.analysis?`<div class="pphoto-analysis">${esc(ph.analysis)}</div>`:''}
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        <div class="dsec">
+          <div class="dsec-hd">Ask about this plant</div>
+          ${hist.length===0?`<div style="padding:12px 16px;font-size:13px;color:#aaa;font-style:italic">Ask anything specific to ${esc(sel.name)}...</div>`:''}
+          <div class="pchat-msgs" id="plant-chat-msgs">
+            ${hist.map(m=>`<div class="mb ${m.role==='user'?'mu-msg':'ma-msg'}">${esc(m.content)}</div>`).join('')}
+            ${sel.chatLoading?'<div class="mb ma-msg" style="color:#aaa">typing...</div>':''}
+          </div>
+          <div class="cinput">
+            <input id="pci" type="text" placeholder="ask about this plant..." value="${esc(plantChatIn)}" oninput="plantChatIn=this.value" onkeydown="if(event.key==='Enter')sendPlantChat('${sel.id}')">
+            <button class="csend" onclick="sendPlantChat('${sel.id}')" ${sel.chatLoading?'disabled':''}>send</button>
+          </div>
+        </div>
+
+        <button class="delbtn" onclick="delPlant('${sel.id}')">Delete plant</button>`;
+
     } else if(view==='add'){
       hdr=`<button class="back" onclick="goBack()">‹ Plants</button><span class="htitle">Add plant</span>`;
       body=`<div class="fwrap">
@@ -180,101 +446,77 @@ function render(){
           <div class="ffield"><label>Fertilise (days)</label><input type="number" inputmode="numeric" value="${formData.fertiliseFreqDays}" oninput="formData.fertiliseFreqDays=parseInt(this.value)||1"></div>
           <div class="ffield"><label>Repot (days)</label><input type="number" inputmode="numeric" value="${formData.repotFreqDays}" oninput="formData.repotFreqDays=parseInt(this.value)||1"></div>
         </div>
-        <div class="fbtns">
-          <button class="bs" onclick="goBack()">Cancel</button>
-          <button class="bp" onclick="addPlant()">Save plant</button>
-        </div>
+        <div class="fbtns"><button class="bs" onclick="goBack()">Cancel</button><button class="bp" onclick="addPlant()">Save plant</button></div>
       </div>`;
+
+    } else if(view==='identify'){
+      hdr=`<button class="back" onclick="goBack()">‹ Plants</button><span class="htitle">Plant identifier</span>`;
+      body=identifyData?`
+        <div style="padding:16px 16px 8px">
+          <img src="${identifyData.dataUrl}" class="id-photo" alt="">
+        </div>
+        ${identifyData.analyzing?
+          `<div class="analyzing-badge" style="padding:16px;font-size:14px"><div class="spinner"></div> Identifying plant...</div>`:
+          identifyData.result?`
+            <div class="id-result">${esc(identifyData.result)}</div>
+            <button class="id-add-btn" onclick="prefillFromIdentify()">+ Add to my plants</button>
+          `:''}
+      `:'<div style="padding:32px 16px;text-align:center;color:#bbb">Take or upload a photo to identify a plant</div>';
     }
-  } else {
-    hdr=`<span class="logo">foliage</span><span style="font-size:13px;color:#888;margin-left:6px">plant chat</span>`;
-    body=`<div class="cmsgs" id="cmsgs">
-      ${messages.map(m=>`<div class="mb ${m.role==='user'?'mu':'ma'}">${esc(m.content)}</div>`).join('')}
-      ${loadingChat?'<div class="mb ma" style="color:#aaa">typing...</div>':''}
+  }
+
+  else if(tab==='chat'){
+    hdr=`<span class="logo">foliage</span><span style="font-size:13px;color:#888;margin-left:6px">general chat</span>`;
+    body=`<div class="gchat-msgs" id="gchat-msgs">
+      ${gMessages.map(m=>`<div class="mb ${m.role==='user'?'mu-msg':'ma-msg'}">${esc(m.content)}</div>`).join('')}
+      ${gChatLoading?'<div class="mb ma-msg" style="color:#aaa">typing...</div>':''}
     </div>
-    <div class="cinput">
-      <input id="ci" type="text" placeholder="ask about your plants..." value="${esc(chatIn)}" oninput="chatIn=this.value" onkeydown="if(event.key==='Enter')sendChat()">
-      <button class="csend" onclick="sendChat()" ${loadingChat?'disabled':''}>Send</button>
+    <div class="gchat-input">
+      <input id="gci" type="text" placeholder="ask about your plants..." value="${esc(gChatIn)}" oninput="gChatIn=this.value" onkeydown="if(event.key==='Enter')sendGlobalChat()">
+      <button class="gchat-send" onclick="sendGlobalChat()" ${gChatLoading?'disabled':''}>Send</button>
     </div>`;
   }
 
-  const app=document.getElementById('app');
-  app.innerHTML=`
+  const overlay=photoViewSrc?`<div class="overlay" onclick="closePhoto()"><img src="${photoViewSrc}" alt=""><div class="overlay-close">tap to close</div></div>`:'';
+
+  document.getElementById('app').innerHTML=`
     <header>${hdr}</header>
     <main id="mc">${body}</main>
     <nav>
       <button class="${tab==='plants'?'on':''}" onclick="switchTab('plants')">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V12m0 0C12 7 7 4 3 6m9 6c0-5 5-8 9-6"/></svg>
-        Plants
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V12m0 0C12 7 7 4 3 6m9 6c0-5 5-8 9-6"/></svg>Plants
       </button>
       <button class="${tab==='chat'?'on':''}" onclick="switchTab('chat')">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-        Chat
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Chat
       </button>
-    </nav>`;
+    </nav>
+    ${overlay}`;
 
-  if(tab==='chat'){
-    setTimeout(()=>{const m=document.getElementById('cmsgs');if(m)m.scrollTop=m.scrollHeight},50);
-  }
+  if(tab==='chat'){setTimeout(()=>{const el=document.getElementById('gchat-msgs');if(el)el.scrollTop=el.scrollHeight},50)}
 }
 
-function switchTab(t){tab=t;if(t==='plants')view='list';render()}
-function selPlant(id){selId=id;view='detail';noteIn='';render()}
-function goBack(){view='list';selId=null;render()}
 function showAdd(){formData={name:'',species:'',location:'',waterFreqDays:7,fertiliseFreqDays:30,repotFreqDays:365};view='add';render()}
-function markDone(id,key){plants=plants.map(p=>p.id===id?{...p,[key]:new Date().toISOString()}:p);save();render()}
-function addNote(id){
-  const el=document.getElementById('ni');
-  const txt=(el?el.value:noteIn).trim();
-  if(!txt)return;
-  plants=plants.map(p=>p.id===id?{...p,notes:[...(p.notes||[]),{id:''+Date.now(),text:txt,date:new Date().toISOString()}]}:p);
-  noteIn='';save();render();
-}
-function delPlant(id){
-  if(!confirm('Delete this plant?'))return;
-  plants=plants.filter(p=>p.id!==id);selId=null;view='list';save();render();
-}
-function addPlant(){
-  if(!formData.name.trim()){alert('Please enter a plant name');return}
-  plants=[...plants,{...formData,id:''+Date.now(),notes:[],lastWatered:null,lastFertilised:null,lastRepotted:null}];
-  view='list';save();render();
-}
-async function sendChat(){
-  const el=document.getElementById('ci');
-  const txt=(el?el.value:chatIn).trim();
-  if(!txt||loadingChat)return;
-  messages=[...messages,{role:'user',content:txt}];
-  chatIn='';loadingChat=true;render();
-  const ctx=plants.map(p=>`${p.name} (${p.species}), ${p.location}. Water every ${p.waterFreqDays}d (last: ${fmt(p.lastWatered)}), fertilise every ${p.fertiliseFreqDays}d (last: ${fmt(p.lastFertilised)}).`).join('\n');
-  const fu=messages.findIndex(m=>m.role==='user');
-  const api=fu>=0?messages.slice(fu):messages;
-  try{
-    const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,
-        system:`You are a knowledgeable plant care assistant. User's plants:\n${ctx}\nBe concise, warm, specific. Reference plants by name.`,
-        messages:api.map(m=>({role:m.role,content:m.content}))})});
-    const d=await r.json();
-    const reply=d.content?d.content.filter(b=>b.type==='text').map(b=>b.text).join(''):'No response.';
-    messages=[...messages,{role:'assistant',content:reply}];
-  }catch(e){messages=[...messages,{role:'assistant',content:'Something went wrong, please try again.'}]}
-  loadingChat=false;save();render();
+
+function prefillFromIdentify(){
+  if(!identifyData||!identifyData.result)return;
+  const lines=identifyData.result.split('\n');
+  const nameLine=lines.find(l=>/common|1[)\.]/i.test(l))||lines[0]||'';
+  const speciesLine=lines.find(l=>/scientific|2[)\.]/i.test(l))||'';
+  const name=nameLine.replace(/^[0-9\.\)\s:*#]+/,'').replace(/common name[:\s]*/i,'').trim();
+  const species=speciesLine.replace(/^[0-9\.\)\s:*#]+/,'').replace(/scientific name[:\s]*/i,'').trim();
+  formData={name:name||'New plant',species:species||'',location:'',waterFreqDays:7,fertiliseFreqDays:30,repotFreqDays:365};
+  identifyData=null;view='add';render();
 }
 
-// PWA manifest
+// PWA
 try{
   const m={name:'foliage',short_name:'foliage',description:'Plant care tracker',start_url:'.',display:'standalone',background_color:'#fafaf8',theme_color:'#3B6D11',
     icons:[{src:`data:image/svg+xml,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" rx="22" fill="#3B6D11"/><text x="50" y="72" font-size="54" text-anchor="middle" fill="white">🌿</text></svg>')}`,sizes:'any',type:'image/svg+xml'}]};
   document.getElementById('mfst').href=URL.createObjectURL(new Blob([JSON.stringify(m)],{type:'application/manifest+json'}));
 }catch(e){}
+if('serviceWorker' in navigator){try{const sw=`self.addEventListener('install',()=>self.skipWaiting());self.addEventListener('activate',e=>e.waitUntil(clients.claim()));self.addEventListener('fetch',e=>{if(e.request.url.includes('anthropic')||e.request.url.includes('blob:'))return;e.respondWith(caches.open('fv2').then(c=>c.match(e.request).then(r=>r||fetch(e.request).then(res=>{if(res.ok)c.put(e.request,res.clone());return res}))));});`;navigator.serviceWorker.register(URL.createObjectURL(new Blob([sw],{type:'application/javascript'}))).catch(()=>{})}catch(e){}}
 
-// Service worker for offline
-if('serviceWorker' in navigator){
-  try{
-    const sw=`self.addEventListener('install',()=>self.skipWaiting());self.addEventListener('activate',e=>e.waitUntil(clients.claim()));self.addEventListener('fetch',e=>{if(e.request.url.includes('anthropic'))return;e.respondWith(caches.open('fv1').then(c=>c.match(e.request).then(r=>r||fetch(e.request).then(res=>{if(res.ok&&res.type!=='opaque')c.put(e.request,res.clone());return res}))));});`;
-    navigator.serviceWorker.register(URL.createObjectURL(new Blob([sw],{type:'application/javascript'}))).catch(()=>{});
-  }catch(e){}
-}
-
+plants=loadAll();
 render();
 </script>
 </body>
