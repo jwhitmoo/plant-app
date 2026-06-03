@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="foliage">
+<meta name="theme-color" content="#3B6D11">
+<link rel="manifest" id="mfst">
+<title>foliage</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{--g:#3B6D11;--gl:#EAF3DE;--bg:#fafaf8;--bd:#e8e8e4;--tx:#1a1a18;--mu:#888;--lt:#ccc;--dn:#dc3545;--wn:#fd7e14;--st:env(safe-area-inset-top,0px);--sb:env(safe-area-inset-bottom,0px)}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--tx);height:100dvh;overflow:hidden}
+#app{position:fixed;inset:0;display:flex;flex-direction:column;padding-top:var(--st)}
+header{display:flex;align-items:center;padding:12px 16px;background:#fff;border-bottom:1px solid var(--bd);min-height:52px;flex-shrink:0;gap:4px}
+.logo{font-size:20px;font-weight:600;color:var(--g);letter-spacing:-.5px}
+.back{background:none;border:none;font-size:16px;color:var(--g);padding:4px 6px 4px 0;cursor:pointer;font-weight:500;white-space:nowrap}
+.htitle{font-size:16px;font-weight:500;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hbtn{background:none;border:none;color:var(--g);font-size:14px;font-weight:500;cursor:pointer;padding:7px 12px;border-radius:20px;white-space:nowrap}
+.hbtn:active{background:var(--gl)}
+main{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:calc(60px + var(--sb))}
+nav{position:fixed;bottom:0;left:0;right:0;height:calc(56px + var(--sb));padding-bottom:var(--sb);background:#fff;border-top:1px solid var(--bd);display:flex;z-index:100}
+nav button{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;background:none;border:none;cursor:pointer;font-size:11px;color:var(--mu);font-family:inherit;padding:0}
+nav button.on{color:var(--g)}
+nav svg{width:22px;height:22px}
+.legend{display:flex;gap:10px;padding:10px 16px 4px;flex-wrap:wrap}
+.legend-item{display:flex;align-items:center;gap:4px;font-size:11px;color:var(--mu)}
+.plist{padding:8px 16px;display:flex;flex-direction:column;gap:8px}
+.pcard{background:#fff;border:1px solid var(--bd);border-radius:12px;padding:14px 16px;cursor:pointer;display:flex;align-items:center;gap:12px;transition:background .1s}
+.pcard:active{background:var(--gl)}
+.pinfo{flex:1;min-width:0}
+.pname{font-size:15px;font-weight:500;margin-bottom:2px}
+.psp{font-size:12px;color:var(--mu);font-style:italic;margin-bottom:6px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dots{display:flex;gap:5px}
+.dot{width:7px;height:7px;border-radius:50%}
+.chev{color:var(--lt);font-size:22px;font-weight:300;line-height:1}
+.dsec{margin:12px 16px;background:#fff;border:1px solid var(--bd);border-radius:12px;overflow:hidden}
+.dsec-hd{padding:11px 16px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:var(--mu);border-bottom:1px solid var(--bd);background:var(--bg)}
+.crow{display:flex;align-items:center;padding:14px 16px;border-bottom:1px solid var(--bd);gap:10px}
+.crow:last-child{border-bottom:none}
+.clbl{font-size:15px;flex:1}
+.cinfo{display:flex;flex-direction:column;align-items:flex-end;gap:2px;margin-right:8px}
+.cfreq{font-size:11px;color:var(--mu)}
+.cst{font-size:13px;font-weight:500}
+.dbtn{padding:8px 14px;border-radius:20px;border:1.5px solid var(--g);background:transparent;color:var(--g);cursor:pointer;font-size:13px;font-weight:500;white-space:nowrap;font-family:inherit}
+.dbtn:active{background:var(--gl)}
+.nitem{padding:12px 16px;border-bottom:1px solid var(--bd);display:flex;gap:10px;align-items:flex-start}
+.nitem:last-of-type{border-bottom:none}
+.ntxt{font-size:14px;line-height:1.5;flex:1;word-break:break-word}
+.ndate{font-size:11px;color:var(--lt);white-space:nowrap;padding-top:2px}
+.nadd{display:flex;gap:8px;padding:12px 16px;border-top:1px solid var(--bd)}
+.nadd input{flex:1;padding:10px 14px;border:1px solid var(--bd);border-radius:22px;font-size:15px;font-family:inherit;background:var(--bg);color:var(--tx);outline:none}
+.nadd input:focus{border-color:var(--g)}
+.ltag{display:inline-flex;align-items:center;gap:4px;font-size:12px;color:var(--mu);background:var(--bg);border:1px solid var(--bd);border-radius:20px;padding:4px 12px;margin:12px 16px 4px}
+.delbtn{margin:8px 16px 16px;padding:13px;border-radius:10px;border:1px solid var(--dn);background:transparent;color:var(--dn);font-size:14px;cursor:pointer;width:calc(100% - 32px);font-family:inherit}
+.fwrap{padding:16px;display:flex;flex-direction:column;gap:14px}
+.ffield label{display:block;font-size:12px;color:var(--mu);margin-bottom:4px;font-weight:500}
+.ffield input{width:100%;padding:11px 14px;border:1px solid var(--bd);border-radius:10px;font-size:16px;font-family:inherit;background:#fff;color:var(--tx);outline:none;-webkit-appearance:none}
+.ffield input:focus{border-color:var(--g)}
+.fgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.fbtns{display:flex;gap:10px}
+.bp{flex:1;padding:14px;border-radius:12px;border:none;background:var(--g);color:#fff;font-size:16px;font-weight:500;cursor:pointer;font-family:inherit}
+.bp:active{opacity:.8}
+.bs{flex:1;padding:14px;border-radius:12px;border:1px solid var(--bd);background:#fff;color:var(--tx);font-size:16px;cursor:pointer;font-family:inherit}
+.cmsgs{padding:12px 16px 90px;display:flex;flex-direction:column;gap:10px}
+.mb{max-width:82%;padding:10px 14px;border-radius:16px;font-size:15px;line-height:1.6;white-space:pre-wrap;word-break:break-word}
+.mu{align-self:flex-end;background:var(--g);color:#fff;border-bottom-right-radius:4px}
+.ma{align-self:flex-start;background:#fff;border:1px solid var(--bd);border-bottom-left-radius:4px}
+.cinput{position:fixed;bottom:calc(56px + var(--sb));left:0;right:0;padding:10px 16px;background:#fff;border-top:1px solid var(--bd);display:flex;gap:8px;z-index:99}
+.cinput input{flex:1;padding:11px 16px;border:1px solid var(--bd);border-radius:24px;font-size:16px;font-family:inherit;background:var(--bg);color:var(--tx);outline:none;-webkit-appearance:none}
+.cinput input:focus{border-color:var(--g)}
+.csend{padding:11px 20px;border-radius:24px;border:none;background:var(--g);color:#fff;font-size:15px;font-weight:500;cursor:pointer;font-family:inherit}
+.csend:active{opacity:.8}
+.csend:disabled{opacity:.5}
+.empty{display:flex;align-items:center;justify-content:center;height:200px;color:var(--lt);font-size:14px}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+const G='#3B6D11',NOW=new Date().toISOString();
+const INIT=[
+  {id:'1',name:'Monkey Mask Monstera',species:'Monstera adansonii',location:'East bedroom window',waterFreqDays:7,fertiliseFreqDays:30,repotFreqDays:548,lastWatered:NOW,lastFertilised:null,lastRepotted:null,notes:[]},
+  {id:'2',name:'Pothos',species:'Epipremnum aureum',location:'North window, hanging',waterFreqDays:10,fertiliseFreqDays:30,repotFreqDays:365,lastWatered:null,lastFertilised:null,lastRepotted:null,notes:[]},
+  {id:'3',name:'Oxalis (1)',species:'Oxalis triangularis',location:'North window',waterFreqDays:7,fertiliseFreqDays:30,repotFreqDays:365,lastWatered:null,lastFertilised:null,lastRepotted:null,notes:[]},
+  {id:'4',name:'Oxalis (2)',species:'Oxalis triangularis',location:'North window',waterFreqDays:7,fertiliseFreqDays:30,repotFreqDays:365,lastWatered:null,lastFertilised:null,lastRepotted:null,notes:[]},
+  {id:'5',name:'Asparagus Fern',species:'Asparagus setaceus',location:'Shelf behind sofa',waterFreqDays:7,fertiliseFreqDays:30,repotFreqDays:365,lastWatered:null,lastFertilised:null,lastRepotted:null,notes:[]},
+  {id:'6',name:'Palm',species:'Unknown palm',location:'East window',waterFreqDays:10,fertiliseFreqDays:30,repotFreqDays:365,lastWatered:NOW,lastFertilised:null,lastRepotted:NOW,notes:[]},
+  {id:'7',name:'Pink Princess Philodendron',species:'Philodendron erubescens',location:'East window',waterFreqDays:7,fertiliseFreqDays:30,repotFreqDays:365,lastWatered:null,lastFertilised:null,lastRepotted:null,notes:[]},
+  {id:'8',name:'Coffee Plant',species:'Coffea arabica',location:'Shelf, grow light',waterFreqDays:7,fertiliseFreqDays:14,repotFreqDays:365,lastWatered:null,lastFertilised:null,lastRepotted:null,notes:[]},
+  {id:'9',name:'String of Turtles',species:'Peperomia prostrata',location:'Drawer unit',waterFreqDays:14,fertiliseFreqDays:30,repotFreqDays:548,lastWatered:null,lastFertilised:null,lastRepotted:null,notes:[]},
+  {id:'10',name:'Peperomia',species:'Peperomia obtusifolia var.',location:'Shelf',waterFreqDays:14,fertiliseFreqDays:30,repotFreqDays:548,lastWatered:null,lastFertilised:null,lastRepotted:null,notes:[]},
+  {id:'11',name:'Schefflera',species:'Schefflera arboricola',location:'North window',waterFreqDays:10,fertiliseFreqDays:14,repotFreqDays:365,lastWatered:null,lastFertilised:null,lastRepotted:NOW,notes:[]},
+  {id:'12',name:'Basil',species:'Ocimum basilicum',location:'East kitchen window',waterFreqDays:3,fertiliseFreqDays:14,repotFreqDays:180,lastWatered:null,lastFertilised:null,lastRepotted:null,notes:[]},
+  {id:'13',name:'Cactus',species:'Unknown',location:'Shelf, grow light',waterFreqDays:14,fertiliseFreqDays:60,repotFreqDays:730,lastWatered:null,lastFertilised:null,lastRepotted:null,notes:[]},
+  {id:'14',name:'Tradescantia',species:'Tradescantia zebrina',location:'North window',waterFreqDays:7,fertiliseFreqDays:30,repotFreqDays:365,lastWatered:null,lastFertilised:null,lastRepotted:null,notes:[]},
+];
+
+let plants=(() => { try{const s=localStorage.getItem('fp');return s?JSON.parse(s):INIT}catch{return INIT} })();
+let messages=(() => { try{const s=localStorage.getItem('fm');return s?JSON.parse(s):[{role:'assistant',content:'Hi! I know your whole plant collection. Ask me anything about care, watering schedules, troubleshooting, or anything plant-related.'}]}catch{return [{role:'assistant',content:'Hi! Ask me about your plants.'}]} })();
+let view='list',tab='plants',selId=null,chatIn='',loadingChat=false,noteIn='',formData={name:'',species:'',location:'',waterFreqDays:7,fertiliseFreqDays:30,repotFreqDays:365};
+
+function save(){try{localStorage.setItem('fp',JSON.stringify(plants))}catch{}try{localStorage.setItem('fm',JSON.stringify(messages))}catch{}}
+function fmt(iso){if(!iso)return'—';const d=Math.floor((Date.now()-new Date(iso))/86400000);if(d===0)return'today';if(d===1)return'yesterday';if(d<7)return d+'d ago';return new Date(iso).toLocaleDateString('en-GB',{day:'numeric',month:'short'})}
+function due(last,freq){if(!last)return null;return Math.round(freq-(Date.now()-new Date(last))/86400000)}
+function sclr(d){if(d===null)return'#bbb';if(d<=0)return'#dc3545';if(d<=2)return'#fd7e14';return'#3B6D11'}
+function flbl(d){return d<30?d+'d':Math.round(d/30)+'mo'}
+function esc(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+
+function render(){
+  const sel=plants.find(p=>p.id===selId);
+  let hdr='',body='';
+
+  if(tab==='plants'){
+    if(view==='list'){
+      hdr=`<span class="logo">foliage</span><div style="flex:1"></div><button class="hbtn" onclick="showAdd()">+ add</button>`;
+      body=`<div class="legend">
+        ${[['#3B6D11','ok'],['#fd7e14','soon'],['#dc3545','overdue'],['#bbb','not set']].map(([c,l])=>`<div class="legend-item"><div class="dot" style="background:${c}"></div>${l}</div>`).join('')}
+      </div>
+      <div class="plist">
+        ${plants.map(p=>{
+          const w=due(p.lastWatered,p.waterFreqDays),f=due(p.lastFertilised,p.fertiliseFreqDays),r=due(p.lastRepotted,p.repotFreqDays);
+          return`<div class="pcard" onclick="selPlant('${p.id}')">
+            <div class="pinfo">
+              <div class="pname">${esc(p.name)}</div>
+              <div class="psp">${esc(p.species)}</div>
+              <div class="dots">
+                <div class="dot" style="background:${sclr(w)}" title="water"></div>
+                <div class="dot" style="background:${sclr(f)}" title="fertilise"></div>
+                <div class="dot" style="background:${sclr(r)}" title="repot"></div>
+              </div>
+            </div>
+            <span class="chev">›</span>
+          </div>`;
+        }).join('')}
+      </div>`;
+    } else if(view==='detail'&&sel){
+      const rows=[
+        {dk:'lastWatered',last:sel.lastWatered,freq:sel.waterFreqDays,lbl:'💧 Water'},
+        {dk:'lastFertilised',last:sel.lastFertilised,freq:sel.fertiliseFreqDays,lbl:'🌱 Fertilise'},
+        {dk:'lastRepotted',last:sel.lastRepotted,freq:sel.repotFreqDays,lbl:'📦 Repot'},
+      ];
+      hdr=`<button class="back" onclick="goBack()">‹ Plants</button><span class="htitle">${esc(sel.name)}</span>`;
+      body=`<div class="ltag">📍 ${esc(sel.location||'no location')}</div>
+      <div class="dsec">
+        <div class="dsec-hd">Care schedule</div>
+        ${rows.map(({dk,last,freq,lbl})=>{
+          const d=due(last,freq);
+          return`<div class="crow">
+            <span class="clbl">${lbl}</span>
+            <div class="cinfo">
+              <span class="cfreq">every ${flbl(freq)}</span>
+              <span class="cst" style="color:${sclr(d)}">${last?fmt(last):'never done'}</span>
+            </div>
+            <button class="dbtn" onclick="markDone('${sel.id}','${dk}')">done</button>
+          </div>`;
+        }).join('')}
+      </div>
+      <div class="dsec">
+        <div class="dsec-hd">Notes</div>
+        ${(sel.notes||[]).length===0?'<div style="padding:14px 16px;font-size:14px;color:#bbb;font-style:italic">no notes yet</div>':''}
+        ${(sel.notes||[]).map(n=>`<div class="nitem"><span class="ntxt">${esc(n.text)}</span><span class="ndate">${fmt(n.date)}</span></div>`).join('')}
+        <div class="nadd">
+          <input id="ni" type="text" placeholder="add a note..." value="${esc(noteIn)}" oninput="noteIn=this.value" onkeydown="if(event.key==='Enter')addNote('${sel.id}')">
+          <button class="dbtn" onclick="addNote('${sel.id}')">add</button>
+        </div>
+      </div>
+      <button class="delbtn" onclick="delPlant('${sel.id}')">Delete plant</button>`;
+    } else if(view==='add'){
+      hdr=`<button class="back" onclick="goBack()">‹ Plants</button><span class="htitle">Add plant</span>`;
+      body=`<div class="fwrap">
+        <div class="ffield"><label>Plant name *</label><input type="text" placeholder="e.g. Monstera" value="${esc(formData.name)}" oninput="formData.name=this.value"></div>
+        <div class="ffield"><label>Species</label><input type="text" placeholder="e.g. Monstera deliciosa" value="${esc(formData.species)}" oninput="formData.species=this.value"></div>
+        <div class="ffield"><label>Location</label><input type="text" placeholder="e.g. East window" value="${esc(formData.location)}" oninput="formData.location=this.value"></div>
+        <div class="fgrid">
+          <div class="ffield"><label>Water (days)</label><input type="number" inputmode="numeric" value="${formData.waterFreqDays}" oninput="formData.waterFreqDays=parseInt(this.value)||1"></div>
+          <div class="ffield"><label>Fertilise (days)</label><input type="number" inputmode="numeric" value="${formData.fertiliseFreqDays}" oninput="formData.fertiliseFreqDays=parseInt(this.value)||1"></div>
+          <div class="ffield"><label>Repot (days)</label><input type="number" inputmode="numeric" value="${formData.repotFreqDays}" oninput="formData.repotFreqDays=parseInt(this.value)||1"></div>
+        </div>
+        <div class="fbtns">
+          <button class="bs" onclick="goBack()">Cancel</button>
+          <button class="bp" onclick="addPlant()">Save plant</button>
+        </div>
+      </div>`;
+    }
+  } else {
+    hdr=`<span class="logo">foliage</span><span style="font-size:13px;color:#888;margin-left:6px">plant chat</span>`;
+    body=`<div class="cmsgs" id="cmsgs">
+      ${messages.map(m=>`<div class="mb ${m.role==='user'?'mu':'ma'}">${esc(m.content)}</div>`).join('')}
+      ${loadingChat?'<div class="mb ma" style="color:#aaa">typing...</div>':''}
+    </div>
+    <div class="cinput">
+      <input id="ci" type="text" placeholder="ask about your plants..." value="${esc(chatIn)}" oninput="chatIn=this.value" onkeydown="if(event.key==='Enter')sendChat()">
+      <button class="csend" onclick="sendChat()" ${loadingChat?'disabled':''}>Send</button>
+    </div>`;
+  }
+
+  const app=document.getElementById('app');
+  app.innerHTML=`
+    <header>${hdr}</header>
+    <main id="mc">${body}</main>
+    <nav>
+      <button class="${tab==='plants'?'on':''}" onclick="switchTab('plants')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V12m0 0C12 7 7 4 3 6m9 6c0-5 5-8 9-6"/></svg>
+        Plants
+      </button>
+      <button class="${tab==='chat'?'on':''}" onclick="switchTab('chat')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        Chat
+      </button>
+    </nav>`;
+
+  if(tab==='chat'){
+    setTimeout(()=>{const m=document.getElementById('cmsgs');if(m)m.scrollTop=m.scrollHeight},50);
+  }
+}
+
+function switchTab(t){tab=t;if(t==='plants')view='list';render()}
+function selPlant(id){selId=id;view='detail';noteIn='';render()}
+function goBack(){view='list';selId=null;render()}
+function showAdd(){formData={name:'',species:'',location:'',waterFreqDays:7,fertiliseFreqDays:30,repotFreqDays:365};view='add';render()}
+function markDone(id,key){plants=plants.map(p=>p.id===id?{...p,[key]:new Date().toISOString()}:p);save();render()}
+function addNote(id){
+  const el=document.getElementById('ni');
+  const txt=(el?el.value:noteIn).trim();
+  if(!txt)return;
+  plants=plants.map(p=>p.id===id?{...p,notes:[...(p.notes||[]),{id:''+Date.now(),text:txt,date:new Date().toISOString()}]}:p);
+  noteIn='';save();render();
+}
+function delPlant(id){
+  if(!confirm('Delete this plant?'))return;
+  plants=plants.filter(p=>p.id!==id);selId=null;view='list';save();render();
+}
+function addPlant(){
+  if(!formData.name.trim()){alert('Please enter a plant name');return}
+  plants=[...plants,{...formData,id:''+Date.now(),notes:[],lastWatered:null,lastFertilised:null,lastRepotted:null}];
+  view='list';save();render();
+}
+async function sendChat(){
+  const el=document.getElementById('ci');
+  const txt=(el?el.value:chatIn).trim();
+  if(!txt||loadingChat)return;
+  messages=[...messages,{role:'user',content:txt}];
+  chatIn='';loadingChat=true;render();
+  const ctx=plants.map(p=>`${p.name} (${p.species}), ${p.location}. Water every ${p.waterFreqDays}d (last: ${fmt(p.lastWatered)}), fertilise every ${p.fertiliseFreqDays}d (last: ${fmt(p.lastFertilised)}).`).join('\n');
+  const fu=messages.findIndex(m=>m.role==='user');
+  const api=fu>=0?messages.slice(fu):messages;
+  try{
+    const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,
+        system:`You are a knowledgeable plant care assistant. User's plants:\n${ctx}\nBe concise, warm, specific. Reference plants by name.`,
+        messages:api.map(m=>({role:m.role,content:m.content}))})});
+    const d=await r.json();
+    const reply=d.content?d.content.filter(b=>b.type==='text').map(b=>b.text).join(''):'No response.';
+    messages=[...messages,{role:'assistant',content:reply}];
+  }catch(e){messages=[...messages,{role:'assistant',content:'Something went wrong, please try again.'}]}
+  loadingChat=false;save();render();
+}
+
+// PWA manifest
+try{
+  const m={name:'foliage',short_name:'foliage',description:'Plant care tracker',start_url:'.',display:'standalone',background_color:'#fafaf8',theme_color:'#3B6D11',
+    icons:[{src:`data:image/svg+xml,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" rx="22" fill="#3B6D11"/><text x="50" y="72" font-size="54" text-anchor="middle" fill="white">🌿</text></svg>')}`,sizes:'any',type:'image/svg+xml'}]};
+  document.getElementById('mfst').href=URL.createObjectURL(new Blob([JSON.stringify(m)],{type:'application/manifest+json'}));
+}catch(e){}
+
+// Service worker for offline
+if('serviceWorker' in navigator){
+  try{
+    const sw=`self.addEventListener('install',()=>self.skipWaiting());self.addEventListener('activate',e=>e.waitUntil(clients.claim()));self.addEventListener('fetch',e=>{if(e.request.url.includes('anthropic'))return;e.respondWith(caches.open('fv1').then(c=>c.match(e.request).then(r=>r||fetch(e.request).then(res=>{if(res.ok&&res.type!=='opaque')c.put(e.request,res.clone());return res}))));});`;
+    navigator.serviceWorker.register(URL.createObjectURL(new Blob([sw],{type:'application/javascript'}))).catch(()=>{});
+  }catch(e){}
+}
+
+render();
+</script>
+</body>
+</html>
